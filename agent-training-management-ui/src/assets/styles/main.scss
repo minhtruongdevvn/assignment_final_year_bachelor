@@ -1,0 +1,57 @@
+// NOTE: global imported
+
+//#region imports
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'partials/utils';
+@import 'partials/mixins';
+
+@import 'floating-vue/dist/style';
+
+@import 'https://fonts.googleapis.com/css2?family=Old+Standard+TT&family=Comfortaa&family=Quicksand&family=Open+Sans&family=Recursive:CRSV,MONO@1,1&display=swap';
+
+//#endregion
+
+/* prettier-ignore */
+html {
+	font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+	
+	&, body {
+		@include apply-overflow($type: 'hidden');
+		@apply wh-full;
+	}
+
+	body {
+		@apply m-0 overflow-auto bg-main-primary text-gray-100 antialiased;
+		&.dark { color-scheme: dark; }
+	}
+
+	select{
+		@apply appearance-none;
+		option { @apply text-gray-900; }
+	}
+
+	textarea, select, input {
+		@apply focus-visible:outline-none;
+
+		/* Chrome, Safari, Edge, Opera */
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			@apply m-0 hidden appearance-none;
+		}
+		&::-webkit-calendar-picker-indicator {
+			@apply cursor-pointer;
+		}
+
+		/* Firefox */
+		&[type='number'] { appearance: textfield; }
+	}
+
+	$reading-els: 'p, a, li, em, span';
+	$title-els: 'h1, h2, h3, h4, h5, h6';
+	#{$reading-els}             { @apply font-reading; }
+	#{$title-els}               { @apply font-title; }
+	#{$reading-els, $title-els} { @apply tracking-wide; }
+}

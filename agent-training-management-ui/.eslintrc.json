@@ -1,0 +1,41 @@
+{
+	"root": true,
+	"plugins": ["simple-import-sort"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:vue/vue3-recommended",
+		"@vue/typescript/recommended",
+		"@vue/eslint-config-prettier",
+		"@vue/eslint-config-typescript/recommended"
+	],
+	"env": { "vue/setup-compiler-macros": true },
+	"rules": {
+		"no-undef": "off",
+		"vue/valid-template-root": "off",
+		"vue/require-default-prop": "off",
+		"simple-import-sort/imports": "warn",
+		"simple-import-sort/exports": "warn",
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"padding-line-between-statements": [
+			"error",
+			{ "blankLine": "always", "prev": "if", "next": "*" },
+			{ "blankLine": "always", "prev": "*", "next": "if" },
+			{
+				"blankLine": "always",
+				"prev": ["const", "let", "var"],
+				"next": "*"
+			},
+			{
+				"blankLine": "any",
+				"prev": ["const", "let", "var"],
+				"next": ["const", "let", "var", "return"]
+			},
+			{ "blankLine": "always", "prev": "*", "next": "return" },
+			{
+				"blankLine": "any",
+				"prev": ["const", "let", "var"],
+				"next": "return"
+			}
+		]
+	}
+}

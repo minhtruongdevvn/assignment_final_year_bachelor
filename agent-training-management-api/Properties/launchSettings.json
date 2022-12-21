@@ -1,0 +1,28 @@
+{
+	"$schema": "http://json.schemastore.org/launchsettings.json",
+	"profiles": {
+		"AtmAPI": {
+			"commandName": "Project",
+			"launchBrowser": false,
+			"hotReloadEnabled": true,
+			"dotnetRunMessages": true,
+			"hotReloadProfile": "aspnetcore",
+			"applicationUrl": "http://localhost:5001",
+			"launchUrl": "api/public",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+
+				"IDS_ISSUER": "https://localhost:5000",
+				"IDS_CLIENT_ID": "internal.m2m.client",
+				"IDS_CLIENT_SECRET": "K14ETfU4PXDv_b8mvancabtd8feEzSDt97NE_4Vz_GI41e_uRvnk5Ly6hQJg6OoF",
+				"IDS_GRANT_TYPE": "client_credentials",
+
+				"ASSIGNMENT_ENDPOINT": "http://localhost:5117"
+			}
+		},
+		"Docker": {
+			"commandName": "Docker",
+			"publishAllPorts": true
+		}
+	}
+}

@@ -1,0 +1,37 @@
+@use 'sass:string';
+
+@function append-affix($list, $affix, $is-suffix: true) {
+	$result: [];
+	@if $is-suffix {
+		@each $base in $list {
+			$result: append($result, string.quote($base + $affix), comma);
+		}
+		@return $result;
+	} @else {
+		@each $base in $list {
+			$result: append($result, string.quote($affix + $base), comma);
+		}
+		@return $result;
+	}
+}
+
+@function str-split($str, $separator: ',') {
+	$split-arr: [];
+	// first index of separator in string
+	$index: str-index($str, $separator);
+
+	@while $index != null {
+		// get the substring from the first character to the separator
+		$item: str-slice($str, 1, $index - 1);
+		// push item to array
+		$split-arr: append($split-arr, $item);
+		// remove item and separator from string
+		$str: str-slice($str, $index + 1);
+		// find new index of separator
+		$index: str-index($str, $separator);
+	}
+	// add the remaining string to list (the last item)
+	$split-arr: append($split-arr, $str);
+
+	@return $split-arr;
+}

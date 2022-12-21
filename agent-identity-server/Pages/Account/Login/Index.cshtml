@@ -1,0 +1,80 @@
+@page
+@model AgentIdentityServer.Pages.Login.Index
+
+<div id="login-page">
+
+	<partial name="_ValidationSummary"/>
+
+	@if (Model.View.EnableLocalLogin)
+	{
+		<section class="vh-100">
+			<div class="container h-100">
+				<div class="row d-flex justify-content-center align-items-center h-100">
+					<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+						<div class="card custom-bg-dark text-white form">
+							<div class="card-body p-5 text-center">
+
+								<div class="mb-md-3 mt-md-4">
+									<h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+									<p class="text-white-50 mb-5">
+										Please enter your login and password!
+									</p>
+
+									<form asp-page="/Account/Login/Index">
+										<input type="hidden" asp-for="Input.ReturnUrl"/>
+
+										<div class="form-outline form-white mb-4">
+											<input asp-for="Input.Username" placeholder="Username or email"
+											       class="form-control form-control-lg" autofocus>
+										</div>
+
+										<div class="form-outline form-white mb-4">
+											<input type="password" autocomplete="on" asp-for="Input.Password"
+											       placeholder="Password" class="form-control form-control-lg"
+											       autofocus>
+										</div>
+
+										<div class="d-flex flex-row flex-column align-items-center mt-5">
+											<button class="btn form-btn" name="Input.Button"
+											        value="login">
+												Login
+											</button>
+
+											@if (Model.View.AllowRememberLogin)
+											{
+												<div class="form-group mb-4 mt-4 mr-auto">
+													<div class="form-check mb-0 p-0">
+														<input class="form-check-input me-5"
+														       asp-for="Input.RememberLogin" checked/>
+														<label class="form-check-label"
+														       asp-for="Input.RememberLogin">
+															Remember me
+														</label>
+													</div>
+												</div>
+											}
+
+											<button class="btn btn-outline-light border-0 btn-rounded"
+											        name="Input.Button" value="cancel">
+												<i class="fa-solid fa-arrow-left"></i>
+											</button>
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	}
+
+	@if (!Model.View.EnableLocalLogin && !Model.View.VisibleExternalProviders.Any())
+	{
+		<div class="alert alert-warning">
+			<strong>Invalid login request</strong>
+			There are no login schemes configured for this request.
+		</div>
+	}
+</div>

@@ -1,0 +1,77 @@
+@mixin apply-overflow($axis: '', $type: 'overlay') {
+	@if $axis == x {
+		overflow-x: auto; // fallback
+		@apply overflow-x-#{$type} overflow-y-hidden;
+	} @else if $axis == y {
+		overflow-y: auto; // fallback
+		@apply overflow-y-#{$type} overflow-x-hidden;
+	} @else {
+		overflow: auto; // fallback
+		@apply overflow-#{$type};
+	}
+}
+
+@mixin apply-scrollbar(
+	$inheritors,
+	$axis: '',
+	$type: 'overlay',
+	$auto-hide: true
+) {
+	@at-root #{$inheritors} {
+		@include apply-overflow($axis, $type);
+
+		@media screen and (-webkit-min-device-pixel-ratio: 0) {
+			&::-webkit-scrollbar {
+				@apply wh-[6px];
+
+				&-track,
+				&-corner {
+					@apply bg-transparent;
+				}
+
+				&-thumb {
+					@apply rounded-full border-[2px] border-solid border-transparent bg-clip-padding;
+
+					@if $auto-hide == false {
+						@apply bg-main-senary/80 hover:bg-main-senary/60;
+					} @else {
+						@apply bg-inherit;
+						@at-root #{$inheritors}:hover#{&} {
+							@apply bg-main-senary/80 hover:bg-main-senary/60;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin apply-hover-bubble(
+	$background-color: 'bg-main-tertiary',
+	$duration: '0.2s',
+	$rounded: '9999px',
+	$background-color-on-click: ''
+) {
+	@apply relative z-[1] flex items-center justify-center;
+
+	&:not([disabled]):before {
+		@apply absolute z-[-1] transition-all content-[''] wh-0;
+		@apply duration-[#{$duration}] rounded-[#{$rounded}] #{$background-color};
+	}
+
+	&:hover:before {
+		@apply wh-full;
+	}
+
+	@if $background-color-on-click != '' {
+		&:active:before {
+			@apply #{$background-color-on-click};
+		}
+	}
+}
+
+/* prettier-ignore */
+@mixin apply-component-theme($libName, $theme) {
+	$theme-to-register: nth(append-affix($theme, $libName, false), 1);
+	@if $theme-to-register { @extend #{$theme-to-register}; }
+}

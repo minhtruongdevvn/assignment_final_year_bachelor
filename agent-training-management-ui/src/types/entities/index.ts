@@ -1,0 +1,10 @@
+export { User as AuthDetail } from 'oidc-client-ts';
+export * from './attendance';
+export * from './category';
+export * from './class';
+export * from './external';
+export * from './lecturer';
+export * from './operator';
+export * from './sieve';
+export * from './skill';
+export * from './student';

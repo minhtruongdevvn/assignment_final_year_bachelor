@@ -1,0 +1,19 @@
+// NOTE: global imported
+
+.modal-themes-- {
+	&table-action {
+		.big {
+			@apply w-full md:w-[700px];
+		}
+
+		.a-modal {
+			&__header {
+				@apply h-auto items-center py-8;
+
+				&__title {
+					@apply m-0 mr-12 flex-shrink-0;
+				}
+			}
+		}
+	}
+}

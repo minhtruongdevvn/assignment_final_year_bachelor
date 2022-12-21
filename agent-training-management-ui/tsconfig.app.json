@@ -1,0 +1,23 @@
+{
+	"extends": "@vue/tsconfig/tsconfig.web.json",
+	"include": ["src/**/*", "*.d.ts"],
+	"exclude": ["node_modules/**/*"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"types": ["node"],
+		"jsx": "preserve",
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"paths": { "@/*": ["./src/*"] },
+		"allowSyntheticDefaultImports": true,
+		"useUnknownInCatchVariables": false,
+		"skipDefaultLibCheck": true,
+		"esModuleInterop": true,
+		"importHelpers": true,
+		"skipLibCheck": true,
+		"composite": true,
+		"sourceMap": true,
+		"strict": true
+	}
+}

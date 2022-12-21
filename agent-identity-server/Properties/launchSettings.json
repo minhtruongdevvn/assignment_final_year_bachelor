@@ -1,0 +1,29 @@
+{
+	"$schema": "http://json.schemastore.org/launchsettings.json",
+	"profiles": {
+		"AgentIdentityServer": {
+			"applicationUrl": "https://localhost:5000",
+			"commandName": "Project",
+			"dotnetRunMessages": true,
+			"hotReloadEnabled": true,
+			"hotReloadProfile": "aspnetcore",
+			"launchBrowser": false,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+
+				"INTERNAL_CLIENT_ID_M2M": "internal.m2m.client",
+				"INTERNAL_CLIENT_SECRET_ID_M2M": "K14ETfU4PXDv_b8mvancabtd8feEzSDt97NE_4Vz_GI41e_uRvnk5Ly6hQJg6OoF",
+
+				"HOST_URL_ATM_SPA": "http://localhost:3001",
+				"IDS_CLIENT_ID_ATM_SPA": "atm.spa.client",
+				"IDS_CLIENT_SECRET_ATM_SPA": "1d3Bpj1QLNRi_bcjqMeAE8pKvvJQpn_8S1tMezn_H0PK0nU2x2hXeTN2s6dIlOUo",
+
+				"IDS_CLIENT_ID_AAM_APP": "aam.spa.client",
+				"IDS_CLIENT_SECRET_AAM_APP": "T1l1ziWVugnDwmvL9LlqRslVc3_GnwfrNfah9wSjwPco9m7LAQJfYgBKXaufrAxh",
+
+				"IDS_CLIENT_ID_AGENT_APP": "aam.agent.client",
+				"IDS_CLIENT_SECRET_AGENT_APP": "AWbQAwBcSRy4MzgpstKAEJ6u23pRabQaDBksQ_czP2XjpETPpBxWhunIh4VfP8NQ"
+			}
+		}
+	}
+}

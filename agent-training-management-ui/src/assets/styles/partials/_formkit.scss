@@ -1,0 +1,165 @@
+// NOTE: global imported
+
+/* ATTRIBUTE CHEATSHEET:
+ *	disabled | invalid | errors | complete | loading | submitted | multiple | action | message-validation | message-error */
+
+.formkit {
+	/* prettier-ignore */
+	&-input {
+		@apply bg-transparent px-4 font-reading text-main-senary placeholder-main-quinary/70;
+		[data-invalid] & { @apply border-red-700 focus:border-red-400; }
+		@at-root textarea#{&} {
+			@include apply-scrollbar(#{&}, y, $auto-hide: false);
+			@apply h-16 max-h-32 min-h-11 py-2;
+		}
+	}
+
+	&-icon svg {
+		@apply wh-5;
+	}
+}
+
+/* themes mixins */
+.formkit-themes-- {
+	&table-action {
+		@mixin textarea {
+			@apply <sm:mt-9;
+			.formkit {
+				&-wrapper {
+					@apply <sm:block;
+				}
+				&-label {
+					@apply <sm:mb-3 <sm:block <sm:wh-auto;
+				}
+			}
+		}
+
+		/* global */
+		.formkit {
+			/* prettier-ignore */
+			&-outer {
+				&:not(:last-child) {
+					@apply mb-6 md:mb-8;
+				}
+
+				&:has(textarea) { @include textarea; }
+			}
+
+			&-wrapper {
+				@apply flex;
+			}
+
+			&-label {
+				// &:after { @apply content-["_:"]; }
+				@apply mr-3 mt-[10px] h-5 w-24 flex-shrink-0 font-title text-sm font-medium capitalize text-main-senary/50 sm:w-32;
+			}
+
+			&-inner {
+				@apply w-full;
+			}
+
+			&-input {
+				@apply min-h-10 w-full rounded-md border border-main-quaternary bg-transparent px-4 font-reading text-main-senary placeholder-main-quinary/70 transition focus:border-accent-primary;
+			}
+
+			&-legend {
+				@apply font-title text-sm text-gray-200;
+			}
+			&-help {
+				@apply text-xs text-gray-500;
+			}
+
+			&-messages {
+				@apply mt-2 ml-28 list-none p-0 sm:ml-36;
+
+				&:has(.formkit-message[data-message-type='ui']) {
+					@apply ml-4 mt-5 list-disc pt-6;
+				}
+			}
+			&-message {
+				@apply text-xs text-red-500;
+			}
+
+			&-outer:has(.formkit-input[data-locked='true']) {
+				.formkit {
+					&-input {
+						@apply select-text border-transparent;
+					}
+				}
+			}
+		}
+	}
+}
+
+// #region OLD CODE
+.fk-group {
+	@apply grid gap-[2%];
+
+	$sum: 10;
+	$start: 1;
+	$end: 9;
+	@for $right-ratio from $start through $end {
+		$left-ratio: $sum - $right-ratio;
+		$right-perc: ($right-ratio - 1) + '9%';
+		$left-perc: ($sum - $right-ratio - 1) + '9%';
+
+		&[ratio='#{#{$right-ratio}-#{$left-ratio}}'] {
+			@apply grid-cols-[#{$right-perc}_#{$left-perc}];
+		}
+	}
+}
+
+.fk {
+	&-text {
+		.formkit-input {
+			@apply h-14 w-full rounded-lg bg-transparent px-4 transition;
+		}
+	}
+
+	&-button {
+		.formkit-wrapper {
+			@apply mb-1;
+		}
+		.formkit-input {
+			@apply rounded-lg bg-accent-primary px-5 py-3 font-title font-semibold tracking-wide text-gray-200 transition hover:bg-accent-primary/80;
+		}
+	}
+
+	&-submit {
+		@extend .fk-button;
+
+		.formkit-input {
+			@apply relative inline-flex w-auto content-center items-center border border-transparent leading-7 transition-all duration-200;
+
+			[data-loading] & {
+				@apply cursor-default bg-main-quaternary/80 text-main-quinary/50 brightness-110;
+			}
+
+			&::before {
+				@apply mr-0 box-border h-5 w-0 rounded-xl border-transparent transition-all duration-200 content-[''];
+
+				[data-loading] & {
+					@apply mr-3 inline-block w-5 animate-[spin_600ms_linear_infinite] border-2 border-white border-r-gray-400/40;
+				}
+			}
+		}
+	}
+
+	// wip
+	/* prettier-ignore */
+	&-box {
+		&-fieldset { @apply p-4 border rounded-md border-main-quaternary; }
+		&-legend   { @apply font-bold; }
+		&-wrapper  { @apply flex items-center mb-1 cursor-pointer; }
+		&-help     { @apply mb-2; }
+		&-label    { @apply mt-1 text-sm text-gray-700; }
+		&-input    { @apply wh-5 mr-2 transition duration-200 bg-white border border-gray-500 rounded-sm appearance-none focus:outline-none focus:ring-0 checked:bg-blue-500; }
+	}
+}
+
+/* prettier-ignore */
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(360deg); }
+}
+// #endregion
