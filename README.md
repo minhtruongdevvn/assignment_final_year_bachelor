@@ -1,6 +1,12 @@
 # Assignment final year bachelor
-## Project description:
-A well-designed micro services architecture system is expected from this project, including:
+
+## The Core Problem It Solves
+Managing an agency that trains personnel and deploys them on missions involves a lot of moving parts — tracking who is trained in what, how well they perform, whether they're qualified for a specific task, and getting the right person assigned to the right mission quickly and accurately. Doing this manually or across disconnected systems is slow, error-prone, and hard to scale.
+
+## What the System Aims to Achieve
+At its heart, the system exists to bridge the gap between training and deployment. It ensures that the people being assigned to missions are genuinely qualified, based on verified, data-driven skill assessments rather than guesswork or paperwork.
+
+## Project Details:
 
 ### 1. IDENTITY SERVICE
 
